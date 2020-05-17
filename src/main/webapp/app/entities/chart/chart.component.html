@@ -1,0 +1,91 @@
+<div>
+    <h2 id="page-heading">
+        <span>Charts</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-chart" [routerLink]="['/chart/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Chart
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="charts?.length === 0">
+        <span>No charts found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="charts?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Chart Name</span></th>
+                    <th scope="col" ><span>Item Id</span></th>
+                    <th scope="col" ><span>Indicator</span></th>
+                    <th scope="col" ><span>X Axis Step</span></th>
+                    <th scope="col" ><span>Y Axis Step</span></th>
+                    <th scope="col" ><span>Start Date</span></th>
+                    <th scope="col" ><span>End Date</span></th>
+                    <th scope="col" ><span>Companies</span></th>
+                    <th scope="col" ><span>Currencies</span></th>
+                    <th scope="col" ><span>Indexes</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let chart of charts ;trackBy: trackId">
+                    <td><a [routerLink]="['/chart', chart.id, 'view']">{{ chart.id }}</a></td>
+                    <td>{{ chart.chartName }}</td>
+                    <td>{{ chart.itemId }}</td>
+                    <td>{{ chart.indicator }}</td>
+                    <td>{{ chart.xAxisStep }}</td>
+                    <td>{{ chart.yAxisStep }}</td>
+                    <td>{{ chart.startDate | date:'medium' }}</td>
+                    <td>{{ chart.endDate | date:'medium' }}</td>
+                    <td>
+                        <span *ngFor="let companies of chart.companies; let last = last">
+                            <a class="form-control-static" [routerLink]="['/company', companies?.id, 'view']">{{ companies.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngFor="let currencies of chart.currencies; let last = last">
+                            <a class="form-control-static" [routerLink]="['/currency', currencies?.id, 'view']">{{ currencies.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <span *ngFor="let indexes of chart.indexes; let last = last">
+                            <a class="form-control-static" [routerLink]="['/world-index', indexes?.id, 'view']">{{ indexes.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/chart', chart.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/chart', chart.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(chart)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

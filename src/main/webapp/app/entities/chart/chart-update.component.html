@@ -1,0 +1,161 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-chart-heading">Create or edit a Chart</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_chartName">Chart Name</label>
+                    <input type="text" class="form-control" name="chartName" id="field_chartName"
+                           formControlName="chartName"/>
+                    <div *ngIf="editForm.get('chartName')!.invalid && (editForm.get('chartName')!.dirty || editForm.get('chartName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('chartName')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('chartName')?.errors?.maxlength">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_itemId">Item Id</label>
+                    <input type="number" class="form-control" name="itemId" id="field_itemId"
+                           formControlName="itemId"/>
+                    <div *ngIf="editForm.get('itemId')!.invalid && (editForm.get('itemId')!.dirty || editForm.get('itemId')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('itemId')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('itemId')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_indicator">Indicator</label>
+                    <input type="number" class="form-control" name="indicator" id="field_indicator"
+                           formControlName="indicator"/>
+                    <div *ngIf="editForm.get('indicator')!.invalid && (editForm.get('indicator')!.dirty || editForm.get('indicator')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('indicator')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('indicator')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_xAxisStep">X Axis Step</label>
+                    <input type="number" class="form-control" name="xAxisStep" id="field_xAxisStep"
+                           formControlName="xAxisStep"/>
+                    <div *ngIf="editForm.get('xAxisStep')!.invalid && (editForm.get('xAxisStep')!.dirty || editForm.get('xAxisStep')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('xAxisStep')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('xAxisStep')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_yAxisStep">Y Axis Step</label>
+                    <input type="number" class="form-control" name="yAxisStep" id="field_yAxisStep"
+                           formControlName="yAxisStep"/>
+                    <div *ngIf="editForm.get('yAxisStep')!.invalid && (editForm.get('yAxisStep')!.dirty || editForm.get('yAxisStep')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('yAxisStep')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('yAxisStep')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_startDate">Start Date</label>
+                    <div class="d-flex">
+                        <input id="field_startDate" type="datetime-local" class="form-control" name="startDate" formControlName="startDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('startDate')!.invalid && (editForm.get('startDate')!.dirty || editForm.get('startDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('startDate')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('startDate')?.errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_endDate">End Date</label>
+                    <div class="d-flex">
+                        <input id="field_endDate" type="datetime-local" class="form-control" name="endDate" formControlName="endDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('endDate')!.invalid && (editForm.get('endDate')!.dirty || editForm.get('endDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('endDate')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('endDate')?.errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_companies">Companies</label>
+                    <select class="form-control" id="field_companies" multiple name="companies" formControlName="companies">
+                        <option [ngValue]="getSelected(editForm.get('companies')!.value, companyOption)" *ngFor="let companyOption of companies; trackBy: trackById">{{ companyOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_currencies">Currencies</label>
+                    <select class="form-control" id="field_currencies" multiple name="currencies" formControlName="currencies">
+                        <option [ngValue]="getSelected(editForm.get('currencies')!.value, currencyOption)" *ngFor="let currencyOption of currencies; trackBy: trackById">{{ currencyOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_indexes">Indexes</label>
+                    <select class="form-control" id="field_indexes" multiple name="indexes" formControlName="indexes">
+                        <option [ngValue]="getSelected(editForm.get('indexes')!.value, worldIndexOption)" *ngFor="let worldIndexOption of worldindices; trackBy: trackById">{{ worldIndexOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

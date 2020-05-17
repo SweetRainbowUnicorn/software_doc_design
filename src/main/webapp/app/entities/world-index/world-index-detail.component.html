@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="worldIndex">
+            <h2><span>World Index</span> {{ worldIndex.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Index Name</span></dt>
+                <dd>
+                    <span>{{ worldIndex.indexName }}</span>
+                </dd>
+                <dt><span>Last Price</span></dt>
+                <dd>
+                    <span>{{ worldIndex.lastPrice }}</span>
+                </dd>
+                <dt><span>Change</span></dt>
+                <dd>
+                    <span>{{ worldIndex.change }}</span>
+                </dd>
+                <dt><span>Volume</span></dt>
+                <dd>
+                    <span>{{ worldIndex.volume }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/world-index', worldIndex.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

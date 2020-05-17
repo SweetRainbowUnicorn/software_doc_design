@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span>World Indices</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-world-index" [routerLink]="['/world-index/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new World Index
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="worldIndices?.length === 0">
+        <span>No worldIndices found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="worldIndices?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Index Name</span></th>
+                    <th scope="col" ><span>Last Price</span></th>
+                    <th scope="col" ><span>Change</span></th>
+                    <th scope="col" ><span>Volume</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let worldIndex of worldIndices ;trackBy: trackId">
+                    <td><a [routerLink]="['/world-index', worldIndex.id, 'view']">{{ worldIndex.id }}</a></td>
+                    <td>{{ worldIndex.indexName }}</td>
+                    <td>{{ worldIndex.lastPrice }}</td>
+                    <td>{{ worldIndex.change }}</td>
+                    <td>{{ worldIndex.volume }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/world-index', worldIndex.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/world-index', worldIndex.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(worldIndex)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

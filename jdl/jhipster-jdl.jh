@@ -1,0 +1,75 @@
+
+entity YahooUser {
+	id Long required unique,
+	username String required unique maxlength(50),
+	age Long required,
+	interest String maxlength(50)
+}
+
+entity Company {
+	companyId Long required unique,
+	companyName String required unique maxlength(50),
+	industry String required maxlength(50),
+    marketCap Double required,
+    price Double required
+    
+}
+
+entity Currency {
+	id Long required unique,
+	currencyName String required unique maxlength(50),
+    symbol String required unique maxlength(50),
+	lastPrice Double required,
+	change Double required
+}
+
+entity WorldIndex {
+	id Long required unique,
+	indexName String required unique maxlength(50),
+	lastPrice Double required,
+	change Double required,
+    volume Long required
+}
+
+entity Chart {
+	id Long required unique,
+	chartName String required unique maxlength(50),
+	itemId Long required,
+	indicator Long required,
+    xAxisStep Double required,
+    yAxisStep Double required,
+    startDate ZonedDateTime required,
+    endDate ZonedDateTime required
+}
+
+entity SavedChart {
+	id Long required unique,
+	chartId Long required,
+    userId Long required,
+	itemId Long required,
+	indicator Long required,
+    xAxisStep Double required,
+    yAxisStep Double required,
+    startDate ZonedDateTime required,
+    endDate ZonedDateTime required
+}
+
+
+relationship OneToOne {
+	SavedChart{chart} to Chart{savedChart}
+}
+
+relationship ManyToMany {
+	Chart{companies} to Company{charts}
+    Chart{currencies} to Currency{charts}
+    Chart{indexes} to WorldIndex{charts}
+}
+
+relationship OneToMany {
+	YahooUser{savedCharts} to SavedChart{yahooUser}
+}
+
+filter Company, Currency
+paginate Company, Currency with infinite-scroll
+service all with serviceImpl
+

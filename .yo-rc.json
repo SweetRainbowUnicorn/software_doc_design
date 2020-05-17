@@ -1,0 +1,39 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.burynyk.yahoofinance"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "yahoofinance",
+    "packageName": "com.burynyk.yahoofinance",
+    "packageFolder": "com/burynyk/yahoofinance",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZTdhNjBlNWIyYjAyMmJiODU4NzYyYWZkYzdiNmRmMjAwMWFjOWVlYjliZmQ5MGM3MWMwZDEwYzBjZWI4NjFkYjYwZGU4N2UzZDA2M2FkYTI3YzJkMjU5MWQ0YmY2ZThmNGYyZDA4NjE2ZTVkNmY2YjU2ODQ2NWY0NGZmNGU2NDg=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "pulse",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1589495517129,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

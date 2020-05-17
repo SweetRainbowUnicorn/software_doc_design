@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="savedChart">
+            <h2><span>Saved Chart</span> {{ savedChart.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Chart Id</span></dt>
+                <dd>
+                    <span>{{ savedChart.chartId }}</span>
+                </dd>
+                <dt><span>User Id</span></dt>
+                <dd>
+                    <span>{{ savedChart.userId }}</span>
+                </dd>
+                <dt><span>Item Id</span></dt>
+                <dd>
+                    <span>{{ savedChart.itemId }}</span>
+                </dd>
+                <dt><span>Indicator</span></dt>
+                <dd>
+                    <span>{{ savedChart.indicator }}</span>
+                </dd>
+                <dt><span>X Axis Step</span></dt>
+                <dd>
+                    <span>{{ savedChart.xAxisStep }}</span>
+                </dd>
+                <dt><span>Y Axis Step</span></dt>
+                <dd>
+                    <span>{{ savedChart.yAxisStep }}</span>
+                </dd>
+                <dt><span>Start Date</span></dt>
+                <dd>
+                    <span>{{ savedChart.startDate }}</span>
+                </dd>
+                <dt><span>End Date</span></dt>
+                <dd>
+                    <span>{{ savedChart.endDate }}</span>
+                </dd>
+                <dt><span>Chart</span></dt>
+                <dd>
+                    <div *ngIf="savedChart.chart">
+                        <a [routerLink]="['/chart', savedChart.chart?.id, 'view']">{{ savedChart.chart?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Yahoo User</span></dt>
+                <dd>
+                    <div *ngIf="savedChart.yahooUser">
+                        <a [routerLink]="['/yahoo-user', savedChart.yahooUser?.id, 'view']">{{ savedChart.yahooUser?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/saved-chart', savedChart.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

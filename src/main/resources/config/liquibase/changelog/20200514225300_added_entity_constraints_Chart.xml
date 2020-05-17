@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--
+        Added the constraints for entity Chart.
+    -->
+    <changeSet id="20200514225300-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="chart_id"
+                                 baseTableName="chart_companies"
+                                 constraintName="fk_chart_companies_chart_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="chart"/>
+
+        <addForeignKeyConstraint baseColumnNames="companies_id"
+                                 baseTableName="chart_companies"
+                                 constraintName="fk_chart_companies_companies_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"/>
+        
+        <addForeignKeyConstraint baseColumnNames="chart_id"
+                                 baseTableName="chart_currencies"
+                                 constraintName="fk_chart_currencies_chart_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="chart"/>
+
+        <addForeignKeyConstraint baseColumnNames="currencies_id"
+                                 baseTableName="chart_currencies"
+                                 constraintName="fk_chart_currencies_currencies_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="currency"/>
+        
+        <addForeignKeyConstraint baseColumnNames="chart_id"
+                                 baseTableName="chart_indexes"
+                                 constraintName="fk_chart_indexes_chart_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="chart"/>
+
+        <addForeignKeyConstraint baseColumnNames="indexes_id"
+                                 baseTableName="chart_indexes"
+                                 constraintName="fk_chart_indexes_indexes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="world_index"/>
+        
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="chart">
+            <h2><span>Chart</span> {{ chart.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Chart Name</span></dt>
+                <dd>
+                    <span>{{ chart.chartName }}</span>
+                </dd>
+                <dt><span>Item Id</span></dt>
+                <dd>
+                    <span>{{ chart.itemId }}</span>
+                </dd>
+                <dt><span>Indicator</span></dt>
+                <dd>
+                    <span>{{ chart.indicator }}</span>
+                </dd>
+                <dt><span>X Axis Step</span></dt>
+                <dd>
+                    <span>{{ chart.xAxisStep }}</span>
+                </dd>
+                <dt><span>Y Axis Step</span></dt>
+                <dd>
+                    <span>{{ chart.yAxisStep }}</span>
+                </dd>
+                <dt><span>Start Date</span></dt>
+                <dd>
+                    <span>{{ chart.startDate }}</span>
+                </dd>
+                <dt><span>End Date</span></dt>
+                <dd>
+                    <span>{{ chart.endDate }}</span>
+                </dd>
+                <dt><span>Companies</span></dt>
+                <dd>
+                    <span *ngFor="let companies of chart.companies; let last = last">
+                        <a [routerLink]="['/company', companies?.id, 'view']">{{ companies.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span>Currencies</span></dt>
+                <dd>
+                    <span *ngFor="let currencies of chart.currencies; let last = last">
+                        <a [routerLink]="['/currency', currencies?.id, 'view']">{{ currencies.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span>Indexes</span></dt>
+                <dd>
+                    <span *ngFor="let indexes of chart.indexes; let last = last">
+                        <a [routerLink]="['/world-index', indexes?.id, 'view']">{{ indexes.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/chart', chart.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

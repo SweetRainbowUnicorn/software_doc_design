@@ -1,0 +1,87 @@
+<div>
+    <h2 id="page-heading">
+        <span>Saved Charts</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-saved-chart" [routerLink]="['/saved-chart/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Saved Chart
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="savedCharts?.length === 0">
+        <span>No savedCharts found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="savedCharts?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Chart Id</span></th>
+                    <th scope="col" ><span>User Id</span></th>
+                    <th scope="col" ><span>Item Id</span></th>
+                    <th scope="col" ><span>Indicator</span></th>
+                    <th scope="col" ><span>X Axis Step</span></th>
+                    <th scope="col" ><span>Y Axis Step</span></th>
+                    <th scope="col" ><span>Start Date</span></th>
+                    <th scope="col" ><span>End Date</span></th>
+                    <th scope="col" ><span>Chart</span></th>
+                    <th scope="col" ><span>Yahoo User</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let savedChart of savedCharts ;trackBy: trackId">
+                    <td><a [routerLink]="['/saved-chart', savedChart.id, 'view']">{{ savedChart.id }}</a></td>
+                    <td>{{ savedChart.chartId }}</td>
+                    <td>{{ savedChart.userId }}</td>
+                    <td>{{ savedChart.itemId }}</td>
+                    <td>{{ savedChart.indicator }}</td>
+                    <td>{{ savedChart.xAxisStep }}</td>
+                    <td>{{ savedChart.yAxisStep }}</td>
+                    <td>{{ savedChart.startDate | date:'medium' }}</td>
+                    <td>{{ savedChart.endDate | date:'medium' }}</td>
+                    <td>
+                        <div *ngIf="savedChart.chart">
+                            <a [routerLink]="['/chart', savedChart.chart?.id, 'view']" >{{ savedChart.chart?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="savedChart.yahooUser">
+                            <a [routerLink]="['/yahoo-user', savedChart.yahooUser?.id, 'view']" >{{ savedChart.yahooUser?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/saved-chart', savedChart.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/saved-chart', savedChart.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(savedChart)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
