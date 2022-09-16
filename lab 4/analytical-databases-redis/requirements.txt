@@ -33,7 +33,7 @@ lazr.restfulclient==0.14.2
 lazr.uri==1.0.3
 lockfile==0.12.2
 macaroonbakery==1.2.3
-Mako==1.0.7
+Mako==1.2.2
 MarkupSafe==1.1.1
 marshmallow==3.6.0
 monotonic==1.5
